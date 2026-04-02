@@ -1,0 +1,18 @@
+# wallust.toml
+backend = "kmeans"
+color_space = "lab"
+palette = "dark16"
+check_contrast = true
+threshold = 20
+
+# The templates configuration
+# We will generate QML output for Quickshell, and configure Pywal emulation
+[templates]
+hyprland = { template = "colors-hyprland.conf", target = "~/.cache/wallust/colors-hyprland.conf" }
+kitty = { template = "colors-kitty.conf", target = "~/.cache/wallust/colors-kitty.conf" }
+hyprlock = { template = "colors-hyprlock.conf", target = "~/.cache/wallust/colors-hyprlock.conf" }
+wlogout = { template = "colors-wlogout.css", target = "~/.cache/wallust/colors-wlogout.css" }
+starship = { template = "colors-starship.toml", target = "~/.cache/wallust/starship.toml" }
+pywal = { template = "colors-wal.json", target = "~/.cache/wal/colors.json" }
+
+
