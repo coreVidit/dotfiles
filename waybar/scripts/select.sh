@@ -8,7 +8,7 @@ menu() {
     find "${ASSETS}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | awk '{print "img:"$0}'
 }
 main() {
-    choice=$(menu | rofi -c ~/.config/wofi/waybar -s ~/.config/wofi/style-waybar.css -dmenu -P "  Select Waybar (Scroll with Arrows)" -n)
+    choice=$(menu | rofi -dmenu -p "  Select Waybar (Scroll with Arrows)" -n)
     selected_wallpaper=$(echo "$choice" | sed 's/^img://')
     echo $selected_wallpaper
     if [[ "$selected_wallpaper" == "$ASSETS/experimental.png" ]]; then

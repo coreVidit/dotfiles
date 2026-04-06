@@ -5,7 +5,7 @@ menu() {
     find "${WALLPAPER_DIR}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | awk '{print "img:"$0}'
 }
 main() {
-    choice=$(menu | rofi -c ~/.config/wofi/wallpaper -s ~/.config/wofi/style-wallpaper.css -dmenu -P "Select Wallpaper:" -n)
+    choice=$(menu | rofi -dmenu -p "Select Wallpaper:" -n)
     selected_wallpaper=$(echo "$choice" | sed 's/^img://')
     awww img "$selected_wallpaper" --transition-type grow --transition-fps 60 --transition-duration .3
     wal -i "$selected_wallpaper" -n --cols16
@@ -16,9 +16,10 @@ main() {
     pywalfox update
     color1=$(awk 'match($0, /color2=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
     color2=$(awk 'match($0, /color3=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
-    sed -i "s/^gradient_color_1 = .*/gradient_color_1 = '$color1'/" $cava_config
-    sed -i "s/^gradient_color_2 = .*/gradient_color_2 = '$color2'/" $cava_config
-    source ~/.cache/wal/colors.sh && cp -r $wallpaper ~/wallpapers/pywallpaper.jpg 
+    cava_config="$HOME/.config/cava/config"
+    sed -i "s/^gradient_color_1 = .*/gradient_color_1 = '$color1'/" "$cava_config"
+    sed -i "s/^gradient_color_2 = .*/gradient_color_2 = '$color2'/" "$cava_config"
+    source ~/.cache/wal/colors.sh && cp -r "$wallpaper" ~/wallpapers/pywallpaper.jpg 
 }
 main
 
