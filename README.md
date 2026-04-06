@@ -85,7 +85,7 @@ You must run the WayClick script once in a terminal to finish its automated envi
 **2. Pywalfox Extension**
 Ensure you have the Pywalfox Extension installed on Firefox for complete experience.
 
-**2. Permissions**  
+**3. Permissions**  
 Ensure your user has access to input devices and brightness controls:
 ```bash
 sudo usermod -aG input,video,i2c $USER
