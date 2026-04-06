@@ -8,12 +8,19 @@
 
 set -euo pipefail
 
-DOTFILES_DIR="$HOME/dotfiles"
+# Auto-detect the dotfiles directory even if cloned elsewhere
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="$HOME/.config"
 
 # 🛑 1. SYSTEM CHECK
-if [ ! -f /etc/arch-release ]; then
-    echo "❌ ERROR: This script is designed for Arch Linux or Arch-based distros only."
+if [ -f /etc/os-release ]; then
+    source /etc/os-release
+    if [[ "$ID" != "arch" ]] && [[ "${ID_LIKE:-}" != *"arch"* ]]; then
+        echo "❌ ERROR: This script is designed for Arch Linux or Arch-based distros only."
+        exit 1
+    fi
+else
+    echo "❌ ERROR: /etc/os-release not found. Unknown distribution."
     exit 1
 fi
 
@@ -131,6 +138,7 @@ echo ""
 echo "───────────────────────────────────────"
 echo "🔗 Setting up symlinks..."
 
+shopt -s dotglob
 for item in "$DOTFILES_DIR"/*; do
     basename=$(basename "$item")
 
@@ -138,11 +146,17 @@ for item in "$DOTFILES_DIR"/*; do
        [[ "$basename" == "README.md" ]] || \
        [[ "$basename" == ".git" ]] || \
        [[ "$basename" == "user_scripts" ]] || \
-       [[ "$basename" == "LICENSE" ]]; then
+       [[ "$basename" == "LICENSE" ]] || \
+       [[ "$basename" == "desktop.jpg" ]]; then
         continue
     fi
 
-    TARGET="$CONFIG_DIR/$basename"
+    # Determine if it belongs in ~/.config or ~/ root
+    if [[ "$basename" == .* ]]; then
+        TARGET="$HOME/$basename"
+    else
+        TARGET="$CONFIG_DIR/$basename"
+    fi
     
     # Improved Backup Logic: Handle real files and real directories
     if [ -e "$TARGET" ] || [ -L "$TARGET" ]; then
@@ -155,10 +169,11 @@ for item in "$DOTFILES_DIR"/*; do
         fi
     fi
 
-    mkdir -p "$CONFIG_DIR"
+    mkdir -p "$(dirname "$TARGET")"
     echo "    🔗 Linking: $item -> $TARGET"
     ln -sf "$item" "$TARGET"
 done
+shopt -u dotglob
 
 # Separate handling for ~/user_scripts
 USER_SCRIPTS_TARGET="$HOME/user_scripts"
@@ -173,11 +188,53 @@ fi
 echo "    🔗 Linking: $DOTFILES_DIR/user_scripts -> $USER_SCRIPTS_TARGET"
 ln -sf "$DOTFILES_DIR/user_scripts" "$USER_SCRIPTS_TARGET"
 
+# =============================================================================
+# 🖼️ INITIAL WALLPAPER & THEME (Run only if no theme exists)
+# =============================================================================
+
+echo ""
+echo "───────────────────────────────────────"
+echo "🖼️  Checking initial wallpaper..."
+
+WALLPAPER_DIR="$HOME/wallpapers"
+[ ! -d "$WALLPAPER_DIR" ] && mkdir -p "$WALLPAPER_DIR"
+
+if [ -f "$DOTFILES_DIR/desktop.jpg" ] && [ ! -f "$HOME/.cache/wal/colors.sh" ]; then
+    echo "    📸 No existing theme found. Setting up default wallpaper..."
+    cp "$DOTFILES_DIR/desktop.jpg" "$WALLPAPER_DIR/desktop.jpg"
+    
+    # Try to set the wallpaper and generate colors if the daemon is running
+    if command -v awww &>/dev/null && command -v wal &>/dev/null; then
+        echo "    🎨 Generating initial color palette (pywal)..."
+        # We start the daemon if it's not running
+        if ! pgrep -x "swww-daemon" &>/dev/null && ! pgrep -x "awww" &>/dev/null; then
+            awww &>/dev/null & 
+            sleep 1
+        fi
+        awww img "$WALLPAPER_DIR/desktop.jpg" --transition-type grow &>/dev/null || true
+        wal -i "$WALLPAPER_DIR/desktop.jpg" -n --cols16 &>/dev/null || true
+        
+        # 🔄 Reload components to apply the new theme immediately
+        echo "    🔄 Reloading components..."
+        [ -f "$HOME/.cache/wal/colors-kitty.conf" ] && cat "$HOME/.cache/wal/colors-kitty.conf" > "$HOME/.config/kitty/current-theme.conf"
+        command -v swaync-client &>/dev/null && swaync-client --reload-css &>/dev/null || true
+        command -v pywalfox &>/dev/null && pywalfox update &>/dev/null || true
+        if pgrep -x "swayosd-server" &>/dev/null; then
+            pkill swayosd-server && swayosd-server &>/dev/null &
+        fi
+    fi
+elif [ -f "$DOTFILES_DIR/desktop.jpg" ] && [ ! -f "$WALLPAPER_DIR/desktop.jpg" ]; then
+    echo "    📸 Copying default wallpaper to $WALLPAPER_DIR (skipping theme setup)..."
+    cp "$DOTFILES_DIR/desktop.jpg" "$WALLPAPER_DIR/desktop.jpg"
+else
+    echo "    ✅ Existing theme found or no default wallpaper. Skipping initial setup."
+fi
+
 echo ""
 echo "======================================="
 echo "✅ INSTALLATION COMPLETE! 🎉"
 echo "======================================="
 echo "1. Log out/in for group & cursor changes."
 echo "2. Run base wayclick setup: ~/user_scripts/wayclick/dusky_wayclick.sh"
-echo "3. Pick a wallpaper (Super + Alt + W) to generate pywal colors (Waybar needs this to start!)"
+echo "3. Your initial wallpaper and colors are set! Use Alt+W to change them later."
 echo ""

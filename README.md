@@ -1,36 +1,60 @@
-# dotfiles
-My personal Hyprland rice on Arch Linux. Tailored for productivity, aesthetics, and workflow efficiency.
+# 🌌 coreVidit's Dotfiles
+A clean, modular, and beginner-friendly Hyprland environment for Arch Linux.
 
-> [!CAUTION]
-> **COMPATIBILITY**: Designed specifically for **Arch Linux** and Arch-based distributions.
-> **WARNING**: The `install.sh` script is non-destructive for folders (it creates `.bak` backups), but it will replace existing configurations in `~/.config/` with symlinks. Use with care on established systems.
+> [!IMPORTANT]
+> **Welcome!** While this setup is designed for everyone, the documentation is **detailed and explanatory** to specifically help users who are new to Hyprland and Arch Linux. It provide a stable, "one-script" installation path to a fully productive environment.
 
 ---
 
-## 🛠️ Highlights
-- **Modular Config**: Hyprland settings split into logically named components.
-- **Dynamic Theming**: Powered by `pywal`. Colors follow your wallpaper across all apps.
-- **Native Scratchpads**: Uses native Hyprland special workspaces instead of external daemons.
-- **Intelligent Installer**: Handles dependencies, AUR helpers, and symlinking automatically.
+## 🛡️ Safety & Compatibility
+
+> [!CAUTION]
+> **OS SUPPORT**: This project is built and tested for **Arch Linux** and its derivatives (Manjaro, EndeavourOS, etc.).
+> **OTHER SYSTEMS**: You *can* technically achieve this setup on other distros by manually copying the directories, but fixing path bugs or broken links will be your responsibility.
+> **INSTALLER BEHAVIOR**: The `install.sh` script will automatically move any existing configuration folders in `~/.config/` to `.bak` before creating its own symlinks. Your data is never deleted, just moved aside.
+
+---
+
+## ✨ Features & Highlights
+
+### 🧩 Modular Architecture
+Unlike monolithic configs, this setup uses a **source-based hierarchy**. Settings for visuals, keybinds, programs, and input are all split into separate files in `hypr/source/`. This makes it incredibly easy for a beginner to tweak one thing without breaking the rest.
+
+### 🎨 Instant Global Theming
+The installer is smart. It doesn't just copy files—it initializes your system. It automatically:
+- Copies a default wallpaper to `~/wallpapers`.
+- Generates a `pywal` color palette immediately.
+- Syncs those colors to your Terminal (Kitty), Status Bar (Waybar), Notifications (SwayNC), and Browser (via Pywalfox).
+- **No manual setup required**—the first time after you run the script, everything will already be themed.
+
+### 🎹 WayClick Engine
+A self-bootstrapping mechanical keyboard sound emulator. On its first run, it builds its own Python environment and installs its own audio dependencies. It's portable, reliable, and completely "set-it-and-forget-it."
+
+### 🚀 Power Tools
+- **OCR to Clipboard**: Extract text from any part of your screen instantly (`Alt + T`).
+- **Google Lens Integration**: Select a region and search the web for it (`Alt + I`).
+- **Native Scratchpads**: Uses Hyprland's native special workspaces for dropdown Terminals, Spotify, and System Monitors. Light on resources, heavy on utility.
 
 ---
 
 ## 📂 Repository Structure
 
-| Folder | Description |
+| Directory | What's inside? |
 |---|---|
-| `hypr/` | Hyprland, Hyprlock, and Hypridle configurations |
-| `waybar/` | Status bar with multiple switchable themes |
-| `user_scripts/` | Custom utility scripts (Brightness, OCR, Lens, etc.) |
-| `wayclick/` | Mechanical keyboard sound emulator |
-| `fish/` & `kitty/` | Shell and Terminal environments |
-| `rofi/` & `swaync/` | Launcher and Notification Center |
+| `hypr/` | Core WM logic, modular source files, locker, and idler. |
+| `waybar/` | Your status bar. Includes 4 distinct switchable themes (Zen, Line, etc.). |
+| `user_scripts/` | The "brains" of the setup—brightness, OCR, toggles, and more. |
+| `wayclick/` | Everything needed for keyboard sound emulation. |
+| `kitty/` | Terminal configuration with dynamic pywal theme support. |
+| `rofi/` | The application launcher and configuration editing menus. |
+| `swaync/` | Notification center styles and settings. |
 
 ---
 
 ## 🚀 Installation
 
 ### 1. Clone the repository
+We recommend keeping the folder at `~/dotfiles` to ensure all custom keybind paths stay aligned perfectly.
 ```bash
 git clone https://github.com/coreVidit/dotfiles ~/dotfiles
 cd ~/dotfiles
@@ -41,50 +65,54 @@ cd ~/dotfiles
 bash install.sh
 ```
 
-**The installer will:**
-1. Check if you are on an Arch-based system.
-2. **Bootstrap an AUR helper** (`paru` or `yay`) if you don't have one.
-3. Install all required system and AUR dependencies.
-4. Back up your existing `~/.config/` folders to `[folder].bak`.
-5. Create symlinks for all configurations.
+**The installer will handle the heavy lifting:**
+1. **AUR Helper**: If you don't have `paru` or `yay`, it will prompt you and install one for you.
+2. **Dependencies**: It verifies and installs ~45 required packages automatically.
+3. **Backups**: Automatically renames existing config folders to `.bak`.
+4. **Theme Initialization**: Sets your first wallpaper and generates colors immediately.
 
 ---
 
-## 🏁 Post-Installation
+## 🏁 Post-Installation Checklist
 
 **1. WayClick First Run**  
-Run the script once in a terminal to build the Python environment and audio dependencies:
+You must run the WayClick script once in a terminal to finish its automated environment setup:
 ```bash
 ~/user_scripts/wayclick/dusky_wayclick.sh
 ```
-After this, use **Alt+U** to toggle keyboard sounds.
 
-**2. Generate Global Theme**  
-Open the wallpaper picker and select an image to generate your first color palette. **Waybar may fail to start or look broken until you do this step**, as it depends on pywal colors in `~/.cache/wal/`.
-- **Keys**: `Alt + W`
-
-**3. Permissions**  
-If WayClick or Brightness controls fail, ensure your user is in the correct groups:
+**2. Permissions**  
+Ensure your user has access to input devices and brightness controls:
 ```bash
 sudo usermod -aG input,video,i2c $USER
 ```
-*(Logout and back in required)*
+*(A logout and back in is required for this to take effect).*
 
 ---
 
-## ⌨️ Common Keybinds
+## ⌨️ Essential Keybinds
 
-| Action | Keys |
-|---|---|
-| **Terminal** | `Super + Q` |
-| **App Launcher** | `Alt + Space` |
-| **Kill Window** | `Super + X` |
-| **Lock Screen** | `Super + M` |
-| **Wallpaper Picker** | `Alt + W` |
-| **Waybar Theme** | `Alt + B` |
-| **Google Lens** | `Alt + I` |
-| **OCR to Clipboard** | `Alt + T` |
-| **Toggle Trackpad** | `Alt + P` |
-| **Toggle WayClick** | `Alt + U` |
+| Category | Command | Keys |
+|---|---|---|
+| **General** | App Launcher | `Alt + Space` |
+| | Kill Window | `Super + X` |
+| | Lock Screen | `Super + M` |
+| **Workspace** | Dropdown Terminal | `Alt + 1` |
+| | System Monitor | `Alt + 3` |
+| | Spotify | `Alt + S` |
+| **Utilities** | Google Lens Search | `Alt + I` |
+| | OCR to Clipboard | `Alt + T` |
+| | Config Editor (Rofi) | `Alt + C` |
+| | Toggle Keyboard Sounds | `Alt + U` |
+| **Customization**| Wallpaper Picker | `Alt + W` |
+| | Waybar Theme | `Alt + B` |
 
-*See `hypr/source/keybinds.conf` for the full list.*
+---
+
+> [!TIP]
+> **Full Keybind List**: For a complete list of all bindings, see your local configuration file at:  
+> `~/dotfiles/hypr/source/keybinds.conf`
+
+---
+
+*Enjoy your new Arch Linux experience!*
