@@ -11,7 +11,7 @@ for item in "$DOTFILES_DIR"/*; do
     basename=$(basename "$item")
 
     # Guard clause to skip non-config files like this script itself, or READMEs
-    if [[ "$basename" == "install.sh" ]] || [[ "$basename" == "README.md" ]] || [[ "$basename" == ".git" ]]; then
+    if [[ "$basename" == "install.sh" ]] || [[ "$basename" == "README.md" ]] || [[ "$basename" == ".git" ]] || [[ "$basename" == "user_scripts" ]]; then
         continue
     fi
 
@@ -35,5 +35,17 @@ for item in "$DOTFILES_DIR"/*; do
     echo "  Linking $item -> $TARGET"
     ln -sf "$item" "$TARGET"
 done
+
+# Handle user_scripts separately — symlink to ~/user_scripts, not ~/.config/
+USER_SCRIPTS_SRC="$DOTFILES_DIR/user_scripts"
+USER_SCRIPTS_TARGET="$HOME/user_scripts"
+
+if [ -e "$USER_SCRIPTS_TARGET" ] || [ -L "$USER_SCRIPTS_TARGET" ]; then
+    echo "  Removing existing ~/user_scripts"
+    rm -rf "$USER_SCRIPTS_TARGET"
+fi
+
+echo "Linking $USER_SCRIPTS_SRC -> $USER_SCRIPTS_TARGET"
+ln -sf "$USER_SCRIPTS_SRC" "$USER_SCRIPTS_TARGET"
 
 echo "Done! 🎉"
