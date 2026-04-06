@@ -10,7 +10,9 @@ A clean, modular, and beginner-friendly Hyprland environment for Arch Linux.
 
 > [!CAUTION]
 > **OS SUPPORT**: This project is built and tested for **Arch Linux** and its derivatives (Manjaro, EndeavourOS, etc.).
+
 > **OTHER SYSTEMS**: You *can* technically achieve this setup on other distros by manually copying the directories, but fixing path bugs or broken links will be your responsibility.
+
 > **INSTALLER BEHAVIOR**: The `install.sh` script will automatically move any existing configuration folders in `~/.config/` to `.bak` before creating its own symlinks. Your data is never deleted, just moved aside.
 
 ---
@@ -80,6 +82,8 @@ You must run the WayClick script once in a terminal to finish its automated envi
 ```bash
 ~/user_scripts/wayclick/dusky_wayclick.sh
 ```
+**2. Pywalfox Extension**
+Ensure you have the Pywalfox Extension installed on Firefox for complete experience.
 
 **2. Permissions**  
 Ensure your user has access to input devices and brightness controls:
@@ -99,7 +103,7 @@ sudo usermod -aG input,video,i2c $USER
 | | Lock Screen | `Super + M` |
 | **Workspace** | Dropdown Terminal | `Alt + 1` |
 | | System Monitor | `Alt + 3` |
-| | Spotify | `Alt + S` |
+| | Spotify | `Alt + 4` |
 | **Utilities** | Google Lens Search | `Alt + I` |
 | | OCR to Clipboard | `Alt + T` |
 | | Config Editor (Rofi) | `Alt + C` |
