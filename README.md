@@ -10,9 +10,7 @@ A clean, modular, and beginner-friendly Hyprland environment for Arch Linux.
 
 > [!CAUTION]
 > **OS SUPPORT**: This project is built and tested for **Arch Linux** and its derivatives (Manjaro, EndeavourOS, etc.).
-
 > **OTHER SYSTEMS**: You *can* technically achieve this setup on other distros by manually copying the directories, but fixing path bugs or broken links will be your responsibility.
-
 > **INSTALLER BEHAVIOR**: The `install.sh` script will automatically move any existing configuration folders in `~/.config/` to `.bak` before creating its own symlinks. Your data is never deleted, just moved aside.
 
 ---
