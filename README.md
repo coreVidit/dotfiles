@@ -4,6 +4,28 @@ A clean, modular, and beginner-friendly Hyprland environment for Arch Linux.
 > [!IMPORTANT]
 > **Welcome!** While this setup is designed for everyone, the documentation is **detailed and explanatory** to specifically help users who are new to Hyprland and Arch Linux. It provide a stable, "one-script" installation path to a fully productive environment.
 
+## 📸 Visual Preview
+
+<p align="center">
+  <img src="assets/previews/preview_1.png" width="45%" border-radius="10px">
+  <img src="assets/previews/preview_2.png" width="45%" border-radius="10px">
+</p>
+<p align="center">
+  <img src="assets/previews/preview_3.png" width="45%" border-radius="10px">
+  <img src="assets/previews/preview_4.png" width="45%" border-radius="10px">
+</p>
+
+### 🛠️ More Previews
+<p align="center">
+  <img src="assets/previews/preview_audio_controls.png" width="30%" title="Audio Controls">
+  <img src="assets/previews/preview_dropdownterm.png" width="30%" title="Dropdown Terminal">
+  <img src="assets/previews/preview_htop.png" width="30%" title="System Monitor">
+</p>
+<p align="center">
+  <img src="assets/previews/preview_spotify.png" width="30%" title="Spotify Layout">
+  <img src="assets/previews/preview_yazi.png" width="30%" title="File Manager (Yazi)">
+</p>
+
 ---
 
 ## 🛡️ Safety & Compatibility
