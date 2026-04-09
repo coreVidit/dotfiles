@@ -113,7 +113,7 @@ PACMAN_DEPS=(
     "waybar" "swaync" "kitty" "fish" "starship" "neovim" "yazi" "nemo" "pipewire" 
     "pipewire-pulse" "pipewire-audio" "wireplumber" "playerctl" "pulsemixer" 
     "pavucontrol" "grim" "slurp" "swappy" "wl-clipboard" "blueman" "networkmanager" 
-    "python-pywal" "cava" "ddcutil" "tesseract" "tesseract-data-eng" "imagemagick" 
+     "ddcutil" "tesseract" "tesseract-data-eng" "imagemagick" 
     "jq" "curl" "xdg-utils" "libnotify" "pacman-contrib" "htop" "uv" "otf-hermit-nerd" 
     "noto-fonts-emoji" "eza" "imv" "zathura" "zathura-pdf-poppler"
 )
@@ -123,10 +123,13 @@ AUR_DEPS=(
     "awww"                  # Wallpaper daemon
     "bibata-cursor-theme"   # Cursors
     "hyprpolkitagent"       # Polkit
+    "python-pywal16"
     "python-pywalfox"       # Browser theming
     "otf-codenewroman-nerd" # Main Font
     "wlogout"               # Logout menu
     "vicinae"               # App Launcher
+    "spotify-launcher" 
+    "spicetify"
 )
 
 echo ""

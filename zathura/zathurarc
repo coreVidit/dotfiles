@@ -1,0 +1,14 @@
+# ────── UI CLEANUP ──────
+set guioptions ""             # Removes the status bar and scrollbars
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+           # Small gap between "pages" (images)
+set window-title-basename true # Shows just the filename in the title bar
+
+# ────── IMAGE BEHAVIOR ──────
+set selection-clipboard clipboard
+set render-loading false      # Faster loading feel
+set scroll-step 50
+
+# ────── SMOOTH COLORS (Matches Pywal) ──────
+include "/home/vdt/.cache/wal/colors-zathura"
