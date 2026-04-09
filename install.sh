@@ -110,13 +110,12 @@ fi
 # Dependency Lists
 PACMAN_DEPS=(
     "hyprland" "hyprlock" "hypridle" "hyprpicker" "uwsm" "xdg-desktop-portal-hyprland"
-    "waybar" "swaync" "kitty" "fish" "starship" "neovim" "rofi"
-    "yazi" "nemo" "pipewire" "pipewire-pulse" "pipewire-audio" "wireplumber"
-    "playerctl" "pulsemixer" "pavucontrol" "grim" "slurp" "swappy" "wl-clipboard"
-    "blueman" "networkmanager" "python-pywal" "cava" "ddcutil" "tesseract"
-    "tesseract-data-eng" "imagemagick" "jq" "curl" "xdg-utils" "libnotify"
-    "pacman-contrib" "htop" "uv" "otf-hermit-nerd" "noto-fonts-emoji" "eza" "imv"
-    "zathura" "zathura-pdf-poppler"
+    "waybar" "swaync" "kitty" "fish" "starship" "neovim" "yazi" "nemo" "pipewire" 
+    "pipewire-pulse" "pipewire-audio" "wireplumber" "playerctl" "pulsemixer" 
+    "pavucontrol" "grim" "slurp" "swappy" "wl-clipboard" "blueman" "networkmanager" 
+    "python-pywal" "cava" "ddcutil" "tesseract" "tesseract-data-eng" "imagemagick" 
+    "jq" "curl" "xdg-utils" "libnotify" "pacman-contrib" "htop" "uv" "otf-hermit-nerd" 
+    "noto-fonts-emoji" "eza" "imv" "zathura" "zathura-pdf-poppler"
 )
 
 AUR_DEPS=(
@@ -127,6 +126,7 @@ AUR_DEPS=(
     "python-pywalfox"       # Browser theming
     "otf-codenewroman-nerd" # Main Font
     "wlogout"               # Logout menu
+    "vicinae"               # App Launcher
 )
 
 echo ""
