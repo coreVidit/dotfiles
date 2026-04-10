@@ -1,10 +1,10 @@
-# 🌌 coreVidit's Dotfiles
+#  coreVidit's Dotfiles
 A clean, modular, and beginner-friendly Hyprland environment for Arch Linux.
 
 > [!IMPORTANT]
 > **Welcome!** While this setup is designed for everyone, the documentation is **detailed and explanatory** to specifically help users who are new to Hyprland and Arch Linux. It provide a stable, "one-script" installation path to a fully productive environment.
 
-## 📸 Visual Preview
+##  Visual Preview
 
 <p align="center">
   <img src="assets/previews/preview_1.png" width="45%" border-radius="10px">
@@ -19,7 +19,7 @@ A clean, modular, and beginner-friendly Hyprland environment for Arch Linux.
   <img src="assets/previews/preview_6.png" width="45%" title="Audio Controls">
 </p>
 
-### 🎀 Extra Screenshots
+###  Extra Screenshots
 <p align="center">
   <img src="assets/previews/preview_alt1.png" width="30%">
   <img src="assets/previews/preview_alt2.png" width="30%">
@@ -28,7 +28,7 @@ A clean, modular, and beginner-friendly Hyprland environment for Arch Linux.
 
 ---
 
-## 🛡️ Safety & Compatibility
+## Safety & Compatibility
 
 > [!CAUTION]
 > **OS SUPPORT**: This project is built and tested for **Arch Linux** and its derivatives (Manjaro, EndeavourOS, etc.).
@@ -39,27 +39,27 @@ A clean, modular, and beginner-friendly Hyprland environment for Arch Linux.
 
 ## ✨ Features & Highlights
 
-### 🧩 Modular Architecture
+###  Modular Architecture
 Unlike monolithic configs, this setup uses a **source-based hierarchy**. Settings for visuals, keybinds, programs, and input are all split into separate files in `hypr/source/`. This makes it incredibly easy for a beginner to tweak one thing without breaking the rest.
 
-### 🎨 Instant Global Theming
+###  Instant Global Theming
 The installer is smart. It doesn't just copy files—it initializes your system. It automatically:
 - Copies a default wallpaper to `~/wallpapers`.
 - Generates a `pywal` color palette immediately.
 - Syncs those colors to your Terminal (Kitty), Status Bar (Waybar), Notifications (SwayNC), and Browser (via Pywalfox).
 - **No manual setup required**—the first time after you run the script, everything will already be themed.
 
-### 🎹 WayClick Engine
+###  WayClick Engine (From Dusky's dotfiles)
 A self-bootstrapping mechanical keyboard sound emulator. On its first run, it builds its own Python environment and installs its own audio dependencies. It's portable, reliable, and completely "set-it-and-forget-it."
 
-### 🚀 Power Tools
+###  Power Tools
 - **OCR to Clipboard**: Extract text from any part of your screen instantly (`Alt + T`).
 - **Google Lens Integration**: Select a region and search the web for it (`Alt + I`).
 - **Native Scratchpads**: Uses Hyprland's native special workspaces for dropdown Terminals, Spotify, and System Monitors. Light on resources, heavy on utility.
 
 ---
 
-## 📂 Repository Structure
+##  Repository Structure
 
 | Directory | What's inside? |
 |---|---|
@@ -73,7 +73,7 @@ A self-bootstrapping mechanical keyboard sound emulator. On its first run, it bu
 
 ---
 
-## 🚀 Installation
+##  Installation
 
 ### 1. Clone the repository
 We recommend keeping the folder at `~/dotfiles` to ensure all custom keybind paths stay aligned perfectly.
@@ -140,3 +140,5 @@ sudo usermod -aG input,video,i2c $USER
 ---
 
 *Enjoy your new Arch Linux experience!*
+
+These dotfiles are result of scraped together features from others dotfiles and some my own hotfixes, tailored for me.
