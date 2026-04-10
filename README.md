@@ -7,23 +7,23 @@ A clean, modular, and beginner-friendly Hyprland environment for Arch Linux.
 ## 📸 Visual Preview
 
 <p align="center">
-  <img src="assets/previews/preview_4.png" width="45%" border-radius="10px">
-  <img src="assets/previews/preview_spotify.png" width="45%" border-radius="10px">
+  <img src="assets/previews/preview_1.png" width="45%" border-radius="10px">
+  <img src="assets/previews/preview_2.png" width="45%" border-radius="10px">
 </p>
 <p align="center">
-  <img src="assets/previews/preview_yazi.png" width="30%" title="File Manager (Yazi)">
-  <img src="assets/previews/preview_htop.png" width="30%" title="System Monitor">
-  <img src="assets/previews/preview_dropdownterm.png" width="30%" title="Dropdown Terminal">
+  <img src="assets/previews/preview_3.png" width="30%" title="File Manager (Yazi)">
+  <img src="assets/previews/preview_4.png" width="30%" title="System Monitor">
+  <img src="assets/previews/preview_5.png" width="30%" title="Dropdown Terminal">
 </p>
 <p align="center">
-  <img src="assets/previews/preview_audio_controls.png" width="45%" title="Audio Controls">
+  <img src="assets/previews/preview_6.png" width="45%" title="Audio Controls">
 </p>
 
 ### 🎀 Extra Screenshots
 <p align="center">
-  <img src="assets/previews/preview_1.png" width="30%">
-  <img src="assets/previews/preview_2.png" width="30%">
-  <img src="assets/previews/preview_3.png" width="30%">
+  <img src="assets/previews/preview_alt1.png" width="30%">
+  <img src="assets/previews/preview_alt2.png" width="30%">
+  <img src="assets/previews/preview_alt3.png" width="30%">
 </p>
 
 ---
