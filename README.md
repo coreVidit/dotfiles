@@ -95,7 +95,7 @@ bash install.sh
 
 ---
 
-## 🏁 Post-Installation Checklist
+##  Post-Installation Checklist
 
 **1. WayClick First Run**  
 You must run the WayClick script once in a terminal to finish its automated environment setup:
@@ -114,7 +114,7 @@ sudo usermod -aG input,video,i2c $USER
 
 ---
 
-## ⌨️ Essential Keybinds
+##  Essential Keybinds
 
 | Category | Command | Keys |
 |---|---|---|
