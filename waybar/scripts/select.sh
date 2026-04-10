@@ -5,17 +5,13 @@ CONFIG="$WAYBAR_DIR/config"
 ASSETS="$WAYBAR_DIR/assets"
 THEMES="$WAYBAR_DIR/themes"
 menu() {
-    find "${ASSETS}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | awk '{print "img:"$0}'
+    find "${ASSETS}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \)
 }
 main() {
-    choice=$(menu | rofi -dmenu -p "  Select Waybar (Scroll with Arrows)" -n)
-    selected_wallpaper=$(echo "$choice" | sed 's/^img://')
+    choice=$(menu | vicinae dmenu -p "  Select Waybar (Scroll with Arrows)")
+    selected_wallpaper=$(echo "$choice")
     echo $selected_wallpaper
-    if [[ "$selected_wallpaper" == "$ASSETS/experimental.png" ]]; then
-        cat $THEMES/experimental/style-experimental.css > $STYLECSS
-        cat $THEMES/experimental/config-experimental > $CONFIG
-        pkill waybar && waybar
-    elif [[ "$selected_wallpaper" == "$ASSETS/main.png" ]]; then
+   if [[ "$selected_wallpaper" == "$ASSETS/main.png" ]]; then
         cat $THEMES/default/style-default.css > $STYLECSS
         cat $THEMES/default/config-default > $CONFIG
         pkill waybar && waybar
@@ -27,6 +23,11 @@ main() {
         cat $THEMES/zen/style-zen.css > $STYLECSS
         cat $THEMES/zen/config-zen > $CONFIG
         pkill waybar && waybar
+    
+    elif [[ "$selected_wallpaper" == "$ASSETS/experimental.png" ]]; then
+    cat $THEMES/experimental/style-experimental.css > $STYLECSS
+    cat $THEMES/experimental/config-experimental > $CONFIG
+    pkill waybar && waybar
     fi
 
 }

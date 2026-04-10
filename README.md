@@ -68,7 +68,7 @@ A self-bootstrapping mechanical keyboard sound emulator. On its first run, it bu
 | `user_scripts/` | The "brains" of the setup—brightness, OCR, toggles, and more. |
 | `wayclick/` | Everything needed for keyboard sound emulation. |
 | `kitty/` | Terminal configuration with dynamic pywal theme support. |
-| `rofi/` | The application launcher and configuration editing menus. |
+| `vicinae/` | The application launcher. |
 | `swaync/` | Notification center styles and settings. |
 
 ---
@@ -123,10 +123,9 @@ sudo usermod -aG input,video,i2c $USER
 | | Lock Screen | `Super + M` |
 | **Workspace** | Dropdown Terminal | `Alt + 1` |
 | | System Monitor | `Alt + 3` |
-| | Spotify | `Alt + 4` |
+| | Spotify | `Alt + S` |
 | **Utilities** | Google Lens Search | `Alt + I` |
 | | OCR to Clipboard | `Alt + T` |
-| | Config Editor (Rofi) | `Alt + C` |
 | | Toggle Keyboard Sounds | `Alt + U` |
 | **Customization**| Wallpaper Picker | `Alt + W` |
 | | Waybar Theme | `Alt + B` |
@@ -141,4 +140,4 @@ sudo usermod -aG input,video,i2c $USER
 
 *Enjoy your new Arch Linux experience!*
 
-These dotfiles are result of scraped together features from others dotfiles and some my own hotfixes, tailored for me.
+These dotfiles are result of scraped together features from other's dotfiles and some my own hotfixes, tailored for me.
