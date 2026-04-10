@@ -138,6 +138,24 @@ sudo usermod -aG input,video,i2c $USER
 
 ---
 
+## ❓ Troubleshooting & FAQ
+
+### 1. Firefox (Pywalfox) colors aren't updating!
+While the installer sets up the Python backend, you still need the extension. 
+**Fix**: Install the [Pywalfox Add-on](https://addons.mozilla.org/en-US/firefox/addon/pywalfox/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search) in Firefox. Open its settings and click "Fetch Pywal Colors" once to establish the initial connection. It will auto-update afterward.
+
+### 2. My Brightness/Volume keys don't work!
+By default, the dotfiles bind standard `F_` keys to SwayOSD audio/brightness controls. 
+**Fix**: 
+- **Reboot**: If you just ran the installer, you must reboot for the `i2c-dev` kernel module to load (required for external monitor brightness).
+- **Update Binds**: Since laptop function rows vary, open `hypr/source/keybinds.conf` and scroll to the bottom. Change the mapped `F2/F3` keys to match your specific laptop's hardware keys, or replace them with the `XF86Audio...` and `XF86MonBrightness...` equivalents.
+
+### 3. WayClick (Keyboard Sounds) is completely silent!
+WayClick reads raw input events, which requires strict permissions.
+**Fix**: Ensure you have rebooted since running the installer. The installer adds your user to the `input` group, but Linux requires a new session for group changes to take effect. Also, ensure you ran the setup command (`~/user_scripts/wayclick/dusky_wayclick.sh --setup`) at least once!
+
+---
+
 *Enjoy your new Arch Linux experience!*
 
 These dotfiles are result of scraped together features from other's dotfiles and some my own hotfixes, tailored for me.
