@@ -1,0 +1,2 @@
+floating-hack = true
+resize = { mode = "size", width=1280, height=720 }
