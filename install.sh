@@ -141,6 +141,7 @@ PACMAN_DEPS=(
      "ddcutil" "tesseract" "tesseract-data-eng" "imagemagick" 
     "jq" "curl" "xdg-utils" "libnotify" "pacman-contrib" "htop" "uv" "otf-hermit-nerd" 
     "noto-fonts-emoji" "eza" "imv" "zathura" "zathura-pdf-poppler"
+    "network-manager-applet" "fastfetch" "nwg-look" "satty" "firefox" "gnome-text-editor"
 )
 
 AUR_DEPS=(
@@ -155,6 +156,8 @@ AUR_DEPS=(
     "vicinae"               # App Launcher
     "spotify-launcher"      # Spotify
     "spicetify"             # Spicetify
+    "hyprshot"              # Screenshot tool
+    "zen-browser-bin"       # Zen Browser
 )
 
 echo ""

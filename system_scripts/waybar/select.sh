@@ -8,7 +8,7 @@ menu() {
     find "${ASSETS}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \)
 }
 main() {
-    choice=$(menu | vicinae dmenu -p "  Select Waybar (Scroll with Arrows)")
+    choice=$(vicinae close ||menu | vicinae dmenu -p "  Select Waybar (Scroll with Arrows)")
     [ -z "$choice" ] && exit
     
     selected_name=$(basename "$choice" .png)

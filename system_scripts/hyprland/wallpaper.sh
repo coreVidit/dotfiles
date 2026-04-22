@@ -5,7 +5,7 @@ menu() {
     find "${WALLPAPER_DIR}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \)
 }
 main() {
-    choice=$(menu | vicinae dmenu -p "Select Wallpaper:" )
+    choice=$(vicinae close || menu | vicinae dmenu -p "Select Wallpaper:" )
     selected_wallpaper=$(echo "$choice")
     [ -z "$selected_wallpaper" ] && exit
     awww img "$selected_wallpaper" --transition-type grow --transition-fps 60 --transition-duration .3
