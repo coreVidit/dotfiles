@@ -1,6 +1,6 @@
 @import url('../../.cache/wal/colors-waybar.css');
 
-{
+* {
   box-shadow: none;
   outline:    none;
 }
@@ -15,7 +15,6 @@ window#osd {
 
 window#osd > box {
     margin:  10px 14px;
-    spacing: 10px;
 }
 
 window#osd image {
