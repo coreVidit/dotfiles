@@ -5,6 +5,16 @@
 
 ---
 
+## Visual Preview
+
+<img src="assets/previews/preview_1.png" width="32%"> <img src="assets/previews/preview_2.png" width="32%"> <img src="assets/previews/preview_3.png" width="32%">
+<img src="assets/previews/preview_4.png" width="32%"> <img src="assets/previews/preview_5.png" width="32%"> <img src="assets/previews/preview_6.png" width="32%">
+
+### Extra Screenshots
+<img src="assets/previews/preview_alt1.png" width="32%"> <img src="assets/previews/preview_alt2.png" width="32%"> <img src="assets/previews/preview_alt3.png" width="32%">
+
+---
+
 ## Core Features
 
 ###  Keybind Helper
@@ -83,6 +93,12 @@ Standard laptop function keys (`F2`, `F3`, `F6`, etc.) are mapped to `swayosd-cl
 | `user_scripts/` | Daily power tools: OCR, Image Search, EDP toggles, and Wayclick. |
 | `vicinae/` | Fast, lightweight Wayland application launcher and menu provider. |
 | `swaync/` | Notification center styles and layout settings. |
+
+---
+
+## Credits & Acknowledgements
+- Massive thanks to [dusklinux](https://github.com/dusklinux/dusky) for the incredible **WayClick** program that powers the mechanical keyboard sounds!
+- Massive credit to [elifouts](https://github.com/elifouts/dotfiles) — the entire dynamic theming system used here is directly from his setup! His work was a huge inspiration and forms the visual foundation of these dotfiles.
 
 ---
 *Built for Arch Linux. Scraped together from various community dotfiles, meticulously pieced together, and enhanced with several custom features by Me for Me.*
