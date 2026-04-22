@@ -7,27 +7,15 @@
 
 ## Core Features
 
-### Dynamic Keybind Helper
+###  Keybind Helper
 Never forget a shortcut again. Press `CTRL + SHIFT + SPACE` to summon an elegant, searchable `vicinae` menu displaying every single active keybind, perfectly parsed directly from your `keybinds.conf` descriptions.
 
-### Integrated Power Tools
+###  Power Tools
 - **OCR to Clipboard:** Extract text from any part of your screen instantly (`ALT + T`).
 - **Google Lens Integration:** Select a screen region to reverse-image search the web (`ALT + I`).
 - **WayClick Engine:** A lightweight, self-bootstrapping mechanical keyboard sound emulator.
 - **Native Scratchpads:** Instant drop-down access to your Terminal, Spotify, and System Monitor using Hyprland's special workspaces.
 
----
-
-## Repository Structure
-
-| Component | Description |
-|---|---|
-| `hypr/` | Core window manager logic, modular configs, locker, and idler. |
-| `waybar/` | Dynamic status bar featuring multiple switchable themes (Zen, Line, Default). |
-| `system_scripts/` | Core OS integrations: Keybind parsers, SwayOSD watchers, and UI switchers. |
-| `user_scripts/` | Daily power tools: OCR, Image Search, EDP toggles, and Wayclick. |
-| `vicinae/` | Fast, lightweight Wayland application launcher and menu provider. |
-| `swaync/` | Notification center styles and layout settings. |
 
 ---
 
@@ -72,17 +60,29 @@ Standard laptop function keys (`F2`, `F3`, `F6`, etc.) are mapped to `swayosd-cl
 |---|---|
 | **App Launcher** | `ALT + SPACE` |
 | **View All Keybinds** | `CTRL + SHIFT + SPACE` |
-| **Lock Screen** | `SUPER + M` |
+| **Wlogout** | `ALT + TAB` |
 | **Change Wallpaper** | `ALT + W` |
-| **Change Waybar Theme** | `ALT + B` |
+| **Change Waybar Style** | `ALT + B` |
 | **Dropdown Terminal** | `ALT + 1` |
 | **Audio Manager** | `ALT + 2` |
 | **System Monitor** | `ALT + 3` |
 | **Google Lens** | `ALT + I` |
 | **OCR to Clipboard** | `ALT + T` |
+| **Screenshot** | `SUPER + S` |
 
-> [!TIP]  
-> Press `CTRL + SHIFT + SPACE` anywhere in the OS to pull up the dynamic keybind helper for a complete list!
+
+---
+
+## Repository Structure
+
+| Component | Description |
+|---|---|``
+| `hypr/` | Core window manager logic, modular configs, locker, and idler. |
+| `waybar/` | Dynamic status bar featuring multiple switchable themes (Zen, Line, Default). |
+| `system_scripts/` | Core OS integrations: Keybind parsers, SwayOSD watchers, and UI switchers. |
+| `user_scripts/` | Daily power tools: OCR, Image Search, EDP toggles, and Wayclick. |
+| `vicinae/` | Fast, lightweight Wayland application launcher and menu provider. |
+| `swaync/` | Notification center styles and layout settings. |
 
 ---
 *Built for Arch Linux. Scraped together from various community dotfiles, meticulously pieced together, and enhanced with several custom features by Me for Me.*
