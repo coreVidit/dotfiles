@@ -23,7 +23,7 @@ detect_aur_helper() {
     fi
 }
 
-# 🛑 STAGE 0: PRE-FLIGHT CHECK
+# 🛑STAGE 0: PRE-FLIGHT CHECK
 echo "======================================="
 echo "🔍 STAGE 0: Pre-Flight Check"
 echo "======================================="
@@ -36,10 +36,10 @@ if command -v snapper &>/dev/null; then
     read -p "   Create snapshot? (y/N): " -n 1 -r
     echo ""
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        echo "📸 Creating snapshot..."
+        echo "Creating snapshot..."
         sudo snapper create --description "Before coreVidit dotfiles installation" || echo "⚠️  Failed to create snapshot, proceeding anyway..."
     else
-        echo "⏭️  Skipping snapshot."
+        echo "⏭ Skipping snapshot."
     fi
 fi
 
@@ -64,6 +64,31 @@ if grep -q "^#Color" /etc/pacman.conf; then
     sudo sed -i 's/^#Color/Color/' /etc/pacman.conf
 fi
 grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i '/^Color/a ILoveCandy' /etc/pacman.conf
+
+echo "⚡ Checking for Chaotic AUR (Pre-compiled AUR packages for faster install)..."
+if ! grep -q "\[chaotic-aur\]" /etc/pacman.conf; then
+    echo "   Chaotic AUR not found. Would you like to add it to speed up AUR package installation?"
+    read -p "   Add Chaotic AUR? (Y/n): " -n 1 -r
+    echo ""
+    if [[ ! $REPLY =~ ^[Nn]$ ]]; then
+        echo "Installing Chaotic AUR keyring and mirrorlist..."
+        sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com || \
+        sudo pacman-key --recv-key 3056513887B78AEB --keyserver keys.openpgp.org || \
+        sudo pacman-key --recv-key 3056513887B78AEB --keyserver hkps://keyserver.ubuntu.com
+        sudo pacman-key --lsign-key 3056513887B78AEB
+        sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' --noconfirm
+        sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm
+        
+        echo "Appending to /etc/pacman.conf..."
+        echo -e "\n[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf > /dev/null
+        sudo pacman -Sy
+        echo "✅ Chaotic AUR configured."
+    else
+        echo "⏭️  Skipping Chaotic AUR."
+    fi
+else
+    echo "✅ Chaotic AUR is already configured."
+fi
 
 echo "======================================="
 echo "🔥 STARTING INSTALLATION"
@@ -123,13 +148,13 @@ AUR_DEPS=(
     "awww"                  # Wallpaper daemon
     "bibata-cursor-theme"   # Cursors
     "hyprpolkitagent"       # Polkit
-    "python-pywal16"
+    "python-pywal16"        # Pywal16
     "python-pywalfox"       # Browser theming
     "otf-codenewroman-nerd" # Main Font
     "wlogout"               # Logout menu
     "vicinae"               # App Launcher
-    "spotify-launcher" 
-    "spicetify"
+    "spotify-launcher"      # Spotify
+    "spicetify"             # Spicetify
 )
 
 echo ""
