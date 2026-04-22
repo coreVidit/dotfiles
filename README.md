@@ -76,7 +76,7 @@ Standard laptop function keys (`F2`, `F3`, `F6`, etc.) are mapped to `swayosd-cl
 ## Repository Structure
 
 | Component | Description |
-|---|---|``
+|---|---|
 | `hypr/` | Core window manager logic, modular configs, locker, and idler. |
 | `waybar/` | Dynamic status bar featuring multiple switchable themes (Zen, Line, Default). |
 | `system_scripts/` | Core OS integrations: Keybind parsers, SwayOSD watchers, and UI switchers. |
