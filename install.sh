@@ -237,6 +237,65 @@ else
     echo "✅ Shell is already Fish."
 fi
 
+# ⌨️  STAGE 2.5: KEYD KEYBOARD REMAPPING (OPTIONAL)
+echo ""
+echo "======================================="
+echo "⌨️   STAGE 2.5: Keyd Keyboard Remapping"
+echo "======================================="
+echo "   keyd lets you remap keys at the system level (works everywhere)."
+echo "   This dotfiles config sets up:"
+echo "     • Compose/Menu key  → Fn-layer (media & brightness keys via F1-F12)"
+echo "     • CapsLock tap      → Escape"
+echo "     • CapsLock hold     → Vim nav layer (hjkl = arrow keys)"
+read -p "   Set up keyd with this config? (y/N): " -n 1 -r
+echo ""
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    # Install keyd if missing
+    if ! command -v keyd &>/dev/null; then
+        echo "📦 Installing keyd..."
+        if [[ -n "$AUR_HELPER" ]]; then
+            "$AUR_HELPER" -S --needed --noconfirm keyd
+        else
+            echo "⚠️  No AUR helper available. Installing keyd via pacman (may not be in repos)..."
+            sudo pacman -S --needed --noconfirm keyd || echo "❌ keyd not found in pacman repos — install manually from AUR."
+        fi
+    else
+        echo "✅ keyd is already installed."
+    fi
+
+    if command -v keyd &>/dev/null; then
+        # Copy the config (backup existing if present)
+        echo "📝 Copying keyd config..."
+        sudo mkdir -p /etc/keyd
+        if [ -f /etc/keyd/default.conf ]; then
+            TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+            echo "   📦 Backing up existing config → /etc/keyd/default.conf.bak.$TIMESTAMP"
+            sudo mv /etc/keyd/default.conf "/etc/keyd/default.conf.bak.$TIMESTAMP"
+        fi
+        sudo cp "$DOTFILES_DIR/keyd/default.conf" /etc/keyd/default.conf
+
+        echo ""
+        echo "   ⚠️  Your Compose/Menu key might be named differently on your keyboard."
+        echo "   The config uses 'compose' by default (run 'sudo keyd monitor' to verify)."
+        read -p "   Do you want to override the modifier key name? (y/N): " -n 1 -r
+        echo ""
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            read -p "   Enter your key name (e.g. menu, compose, rightmeta): " KEY_NAME
+            if [[ -n "$KEY_NAME" ]]; then
+                sudo sed -i "s/^compose = layer(fn_layer)/$KEY_NAME = layer(fn_layer)/" /etc/keyd/default.conf
+                echo "   ✅ Modifier key set to: $KEY_NAME"
+            fi
+        fi
+
+        # Enable and start the service
+        echo "🚀 Enabling and starting keyd service..."
+        sudo systemctl enable --now keyd
+        echo "✅ keyd is active. CapsLock→Esc/vim nav and Compose→Fn-layer are live."
+    fi
+else
+    echo "⏭️  Skipping keyd setup."
+fi
+
 # 🔗 STAGE 3: HARDENED SYMLINKS & BACKUPS
 echo ""
 echo "======================================="

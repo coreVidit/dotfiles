@@ -17,7 +17,7 @@ main() {
     waybar &
     color1=$(awk 'match($0, /color2=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
     color2=$(awk 'match($0, /color3=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
-    source ~/.cache/wal/colors.sh && cp -r "$wallpaper" ~/wallpapers/pywallpaper.jpg
+    source ~/.cache/wal/colors.sh && cp -r "$selected_wallpaper" ~/wallpapers/pywallpaper.jpg
     
 }
 main

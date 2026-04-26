@@ -1,0 +1,96 @@
+* {
+    font-family: "SF Pro Display", "CaskaydiaCove Nerd Font propo", "sans-serif";
+    font-size: 14px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    min-height: 24px;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+window#waybar {
+    /* Pure monochrome black background */
+    background-color: #000000;
+    color: #ffffff;
+    border-bottom: 1px solid #333333;
+}
+
+/* --- WORKSPACES --- */
+#workspaces {
+    margin-left: 12px;
+}
+
+#workspaces button.empty {
+    color: #333333;
+    /* Invisible dark grey for empty */
+}
+
+#workspaces button {
+    color: #888888;
+    /* Mid-grey for workspaces that have apps open */
+    padding: 0 4px;
+    background: transparent;
+    transition: color 0.2s ease;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    /* Pure white for active */
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+    /* Purple glow */
+}
+
+/* --- WINDOW TITLE (CENTER) --- */
+#window {
+    color: #ffffff;
+    /* High contrast white */
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* --- RIGHT MODULES --- */
+#clock,
+#network,
+#bluetooth,
+#battery {
+    padding: 0 5px;
+}
+
+#custom-separator {
+    color: #555555;
+    padding: 0 4px;
+}
+
+#network,
+#bluetooth {
+    color: #cccccc;
+    font-weight: 400;
+}
+
+#battery {
+    color: #cccccc;
+    font-weight: 500;
+}
+
+/* Specific module tweaks to draw the eye perfectly */
+#clock {
+    margin-right: 8px;
+    color: #ffffff;
+    /* Clock should be pure white */
+    font-weight: 600;
+}
+
+#network {
+    color: #cccccc;
+}
+
+/* --- BATTERY ALERTS --- */
+#battery.warning {
+    color: #f9e2af;
+}
+
+#battery.critical {
+    color: #f38ba8;
+}

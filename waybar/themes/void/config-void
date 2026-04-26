@@ -1,0 +1,85 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-bottom": 0,
+    "reload_style_on_change": true,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "hyprland/window": {
+        "format": "󱂬  {}",
+        "max-length": 50,
+        "separate-outputs": true
+    },
+    "modules-right": [
+        "network",
+        "custom/separator",
+        "bluetooth",
+        "custom/separator",
+        "battery",
+        "custom/separator",
+        "clock"
+    ],
+    "custom/separator": {
+        "format": "|",
+        "tooltip": false
+    },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": "",
+            "empty": ""
+        },
+        "persistent-workspaces": {
+            "*": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "tooltip-format": "<tt>{calendar}</tt>"
+    },
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "󰈀  ETH",
+        "format-disconnected": "󰲜  Offline",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "on-click": "kitty nmtui"
+    },
+    "bluetooth": {
+        "format": "󰂲",
+        "format-on": "󰂯",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂯  {device_alias}",
+        "format-connected-battery": "󰂯  {device_battery_percentage}%",
+        "on-click-right": "blueman-manager"
+    },
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "󰂄  {capacity}%",
+        "format-plugged": "󰂄  {capacity}%",
+        "format-icons": [
+            "󰁻",
+            "󰁼",
+            "󰁾",
+            "󰂀",
+            "󰂂",
+            "󰁹"
+        ]
+    }
+}
