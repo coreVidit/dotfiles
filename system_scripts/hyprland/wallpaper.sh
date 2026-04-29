@@ -18,7 +18,16 @@ main() {
     color1=$(awk 'match($0, /color2=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
     color2=$(awk 'match($0, /color3=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
     source ~/.cache/wal/colors.sh && cp -r "$selected_wallpaper" ~/wallpapers/pywallpaper.jpg
-    
+
+    # Update Kvantum theme highlights with Pywal colors
+    KVANTUM_CONF="$HOME/dotfiles/Kvantum/Carl/Carl.kvconfig"
+    if [ -f "$KVANTUM_CONF" ]; then
+        sed -i "s/^highlight.color=.*/highlight.color=$color4/" "$KVANTUM_CONF"
+        sed -i "s/^inactive.highlight.color=.*/inactive.highlight.color=$color8/" "$KVANTUM_CONF"
+        sed -i "s/^link.color=.*/link.color=$color4/" "$KVANTUM_CONF"
+        sed -i "s/^link.visited.color=.*/link.visited.color=$color5/" "$KVANTUM_CONF"
+        kvantummanager --set Carl &>/dev/null
+    fi
 }
 main
 

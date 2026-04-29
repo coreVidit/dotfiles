@@ -141,7 +141,7 @@ PACMAN_DEPS=(
      "ddcutil" "tesseract" "tesseract-data-eng" "imagemagick" 
     "jq" "curl" "xdg-utils" "libnotify" "pacman-contrib" "htop" "uv" "otf-hermit-nerd" 
     "noto-fonts-emoji" "eza" "imv" "zathura" "zathura-pdf-poppler"
-    "network-manager-applet" "fastfetch" "nwg-look" "satty" "firefox" "gnome-text-editor"
+    "network-manager-applet" "fastfetch" "nwg-look" "satty" "firefox" "gnome-text-editor" "kvantum" "qt6ct-kde"
 )
 
 AUR_DEPS=(
@@ -314,6 +314,7 @@ for item in "$DOTFILES_DIR"/*; do
        [[ "$basename" == ".git" ]] || \
        [[ "$basename" == "user_scripts" ]] || \
        [[ "$basename" == "LICENSE" ]] || \
+       [[ "$basename" == "dolphinui.rc" ]] || \
        [[ "$basename" == "desktop.jpg" ]]; then
         continue
     fi
@@ -356,6 +357,24 @@ if [ -e "$USER_SCRIPTS_TARGET" ] || [ -L "$USER_SCRIPTS_TARGET" ]; then
 fi
 echo "    🔗 Linking: $DOTFILES_DIR/user_scripts -> $USER_SCRIPTS_TARGET"
 ln -sf "$DOTFILES_DIR/user_scripts" "$USER_SCRIPTS_TARGET"
+
+# Handle dolphinui.rc (UI layout like toolbars) in ~/.local/share
+DOLPHIN_UI_TARGET="$HOME/.local/share/kxmlgui5/dolphin/dolphinui.rc"
+DOLPHIN_UI_DIR="$(dirname "$DOLPHIN_UI_TARGET")"
+mkdir -p "$DOLPHIN_UI_DIR"
+if [ -e "$DOLPHIN_UI_TARGET" ] || [ -L "$DOLPHIN_UI_TARGET" ]; then
+    if [ ! -L "$DOLPHIN_UI_TARGET" ]; then
+        TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+        echo "    📦 Backing up: dolphinui.rc -> dolphinui.rc.bak.$TIMESTAMP"
+        mv "$DOLPHIN_UI_TARGET" "${DOLPHIN_UI_TARGET}.bak.$TIMESTAMP"
+    else
+        rm "$DOLPHIN_UI_TARGET"
+    fi
+fi
+if [ -f "$DOTFILES_DIR/dolphinui.rc" ]; then
+    echo "    🔗 Linking: $DOTFILES_DIR/dolphinui.rc -> $DOLPHIN_UI_TARGET"
+    ln -sf "$DOTFILES_DIR/dolphinui.rc" "$DOLPHIN_UI_TARGET"
+fi
 
 # 🔑 STAGE 4: PERMISSIONS & DEFAULTS
 echo ""
